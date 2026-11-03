@@ -21,4 +21,8 @@ jobs:
       - name: сборка  
         run: docker build -t ${{ secrets.DOCKER_USER }}/devops-node-starter:${{ github.sha }} .
 
-    
+      - name: docker login
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
+      
+      - name: docker push
+        run: docker push ${{ secrets.DOCKER_USER }}/devops-node-starter:${{ github.sha }}
