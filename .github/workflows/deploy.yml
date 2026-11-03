@@ -16,4 +16,9 @@ jobs:
       - name: Линтинг
         run: npm run lint  
       - name: Тестирование
-        run: npm test  
+        run: npm run test  
+
+      - name: сборка  
+        run: docker build -t ${{ secrets.DOCKER_USER }}/devops-node-starter:${{ github.sha }} .
+
+    
